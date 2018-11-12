@@ -136,6 +136,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-access_token" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>储存access_token的两个思路：</p>
+<p>1.直接存入到数据库，存储的逻辑为：</p>
+<pre><code>变量赋值操作：
+    向微信接口发起请求获取access_token赋值给变量token,
+    设置超时时间为当前时间对应的时间戳+7200
+
+数据库建立含有access_token和timestamp两个字段的表，初始为空，
+
+如果：表中access_token字段为空（第一次存入access_token）
+    执行变量赋值操作，将token和now变量存入建立的表。
+
+否则：
+    如果数据库中timestamp字段的值大于当前时间：
+        执行变量赋值操作，将token和now更新至表中
+    否则：
+        不做处理
+</code></pre><p>2.将access_token存入到redis缓存中，并设置缓存失效时间为7200秒</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/12/access_token/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -240,15 +304,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树莓派</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">无外网ip</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">远程控制</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树莓派</a>
         		</li>
       		
 		</ul>
@@ -462,14 +526,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
@@ -483,6 +539,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
               </li>
             
             <div class="clearfix"></div>
