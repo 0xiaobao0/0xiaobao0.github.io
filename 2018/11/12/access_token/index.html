@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://0xiaobao0.github.io">
-  <title>远程控制无公网ip电脑以及socket传输数据流到无公网ip的外网电脑上 | mrliuuu</title>
+  <title>储存access_token的思路 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="储存access_token的两个思路： 1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
+  <meta name="description" content="储存access_token的三个思路：  1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
 <meta name="keywords" content="access_token,定时刷新,微信开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="远程控制无公网ip电脑以及socket传输数据流到无公网ip的外网电脑上">
+<meta property="og:title" content="储存access_token的思路">
 <meta property="og:url" content="http://0xiaobao0.github.io/2018/11/12/access_token/index.html">
 <meta property="og:site_name" content="mrliuuu">
-<meta property="og:description" content="储存access_token的两个思路： 1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
+<meta property="og:description" content="储存access_token的三个思路：  1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-12T09:10:25.539Z">
+<meta property="og:updated_time" content="2018-11-18T12:19:23.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="远程控制无公网ip电脑以及socket传输数据流到无公网ip的外网电脑上">
-<meta name="twitter:description" content="储存access_token的两个思路： 1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
+<meta name="twitter:title" content="储存access_token的思路">
+<meta name="twitter:description" content="储存access_token的三个思路：  1.直接存入到数据库，存储的逻辑为： 变量赋值操作：     向微信接口发起请求获取access_token赋值给变量token,     设置超时时间为当前时间对应的时间戳+7200  数据库建立含有access_token和timestamp两个字段的表，初始为空，  如果：表中access_token字段为空（第一次存入access_token）">
   
     <link rel="alternative" href="/atom.xml" title="mrliuuu" type="application/atom+xml">
   
@@ -146,7 +146,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      远程控制无公网ip电脑以及socket传输数据流到无公网ip的外网电脑上
+      储存access_token的思路
     </h1>
   
 
@@ -159,7 +159,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>储存access_token的两个思路：</p>
+        <blockquote>
+<p>储存access_token的三个思路：</p>
+</blockquote>
 <p>1.直接存入到数据库，存储的逻辑为：</p>
 <pre><code>变量赋值操作：
     向微信接口发起请求获取access_token赋值给变量token,
@@ -176,6 +178,7 @@
     否则：
         不做处理
 </code></pre><p>2.将access_token存入到redis缓存中，并设置缓存失效时间为7200秒</p>
+<p>3.服务器创建一个py文件，文件逻辑是向接口请求access_token，并更新至数据库，然后服务器创建一个定时任务，将该py文件每两小时执行一次</p>
 
       
 
@@ -427,11 +430,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+                <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -439,15 +442,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,15 +458,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">django</a>
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
             
             <div class="clearfix"></div>
