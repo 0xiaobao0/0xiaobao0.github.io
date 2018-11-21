@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://0xiaobao0.github.io">
-  <title>django配置Imagefiled上传路径以及media路径配置 | mrliuuu</title>
+  <title>一次有趣的前后端与七牛云的交互 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678首先配置model时进行如下配置class DeclareProfile(models.Model):    declareid = models.AutoField(verbose_name=u&amp;apos;表白内容id&amp;apos;, primary_key=True)    sender = models.ForeignKey(UserProfile, verbose_name">
-<meta name="keywords" content="python,django,Imagefiled,media路径">
+  <meta name="description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
+<meta name="keywords" content="python,django,七牛云 - 前端 - 图片上传,js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django配置Imagefiled上传路径以及media路径配置">
-<meta property="og:url" content="http://0xiaobao0.github.io/2018/11/18/Imagefiled以及media路径配置/index.html">
+<meta property="og:title" content="一次有趣的前后端与七牛云的交互">
+<meta property="og:url" content="http://0xiaobao0.github.io/2018/11/21/图片上传至七牛云/index.html">
 <meta property="og:site_name" content="mrliuuu">
-<meta property="og:description" content="12345678首先配置model时进行如下配置class DeclareProfile(models.Model):    declareid = models.AutoField(verbose_name=u&amp;apos;表白内容id&amp;apos;, primary_key=True)    sender = models.ForeignKey(UserProfile, verbose_name">
+<meta property="og:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-18T12:23:03.935Z">
+<meta property="og:updated_time" content="2018-11-21T14:00:25.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django配置Imagefiled上传路径以及media路径配置">
-<meta name="twitter:description" content="12345678首先配置model时进行如下配置class DeclareProfile(models.Model):    declareid = models.AutoField(verbose_name=u&amp;apos;表白内容id&amp;apos;, primary_key=True)    sender = models.ForeignKey(UserProfile, verbose_name">
+<meta name="twitter:title" content="一次有趣的前后端与七牛云的交互">
+<meta name="twitter:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
   
     <link rel="alternative" href="/atom.xml" title="mrliuuu" type="application/atom+xml">
   
@@ -139,20 +139,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Imagefiled以及media路径配置" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-图片上传至七牛云" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      django配置Imagefiled上传路径以及media路径配置
+      一次有趣的前后端与七牛云的交互
     </h1>
   
 
         
-        <a href="/2018/11/18/Imagefiled以及media路径配置/" class="archive-article-date">
-  	<time datetime="2018-11-18T11:01:14.004Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
+        <a href="/2018/11/21/图片上传至七牛云/" class="archive-article-date">
+  	<time datetime="2018-11-21T13:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
 </a>
         
       </header>
@@ -160,20 +160,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">首先配置model时进行如下配置</span><br><span class="line">class DeclareProfile(models.Model):</span><br><span class="line">    declareid = models.AutoField(verbose_name=u&apos;表白内容id&apos;, primary_key=True)</span><br><span class="line">    sender = models.ForeignKey(UserProfile, verbose_name=u&apos;发送者&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br><span class="line">    towho = models.CharField(max_length=20, verbose_name=u&apos;接受者&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br><span class="line">    anonymous = models.IntegerField(verbose_name=&quot;是否匿名&quot;, choices=((1, u&quot;匿名&quot;), (0, &quot;不匿名&quot;)), default=0, blank=True, null=True)</span><br><span class="line">    image = models.ImageField(upload_to=&quot;image/%Y/%m&quot;, default=u&quot;image/default.png&quot;)</span><br><span class="line">    content = models.CharField(max_length=5000, verbose_name=u&apos;内容&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>表明图片的上传路径是在media路径下的image/年份/月份 文件夹之下</p>
+<p>场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。</p>
+</blockquote>
+<p>解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key值与域名拼接事件，然后再将拼接后的url添加到name=img_url隐藏的input的value中。随后将正常提交表单。</p>
+<blockquote>
+<p>前端html代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/html&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;提交&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/static/js/upload_to_qiniu.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form method=&quot;POST&quot; action=&quot;http://0smallwhite0.vicp.io:16991/declare/&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;key&quot; id=&quot;key&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; key &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;token&quot; id=&quot;token&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; token &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;file&quot; id=&quot;file&quot; type=&quot;file&quot; onchange=&quot;ajaxform()&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;towho&quot; id=&quot;towho&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;anonymous&quot; id=&quot;anonymous&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;content&quot; id=&quot;content&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;img_url&quot; id=&quot;img_url&quot; type=&quot;hidden&quot; value=&quot;&quot;&gt;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">        &lt;input type=&quot;submit&quot; id=&quot;submit&quot; onclick=&quot;ajaxform()&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <a id="more"></a>
 <blockquote>
-<p>然后再setting中进行如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, &apos;media/wechat_app/files/&apos;)</span><br><span class="line">MEDIA_URL = &apos;/media/&apos;</span><br></pre></td></tr></table></figure></p>
+<p>前端js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function ajaxform() &#123;</span><br><span class="line">    var formData = new FormData();</span><br><span class="line">    formData.append(&apos;file&apos;, document.getElementById(&apos;file&apos;).files[0]);</span><br><span class="line">    formData.append(&apos;key&apos;, document.getElementById(&apos;key&apos;).value);</span><br><span class="line">    formData.append(&apos;token&apos;, document.getElementById(&apos;token&apos;).value);</span><br><span class="line">    document.getElementById(&apos;content&apos;).value);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &apos;http://up-z1.qiniup.com/&apos;,</span><br><span class="line">        data: formData,</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        contentType: false,//这里</span><br><span class="line">        processData: false,//这两个一定设置为false</span><br><span class="line">        success: function (data) &#123;</span><br><span class="line">            url = &apos;img.hellowmrliu.cn/&apos;+data[&apos;key&apos;];</span><br><span class="line">            setdata(url)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:function()&#123;</span><br><span class="line">            alert(&apos;图片上传失败&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">function setdata(imgurl) &#123;</span><br><span class="line">    document.getElementById(&apos;img_url&apos;).value = imgurl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>设置media的根目录以及url,特别注意的是MEDIA_ROOT路径写法是media/…而不是/media/…进行以上操作后别忘了在urls.py中添加media的路径</p>
+<p>后端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def declaration(self,request):</span><br><span class="line">    if request.method == &apos;GET&apos;:</span><br><span class="line">        return render(request, &apos;userform.html&apos;)</span><br><span class="line"></span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        result = self.jugelogin(request)</span><br><span class="line">        if &apos;errmsg&apos; in result.keys():</span><br><span class="line">            return HttpResponse(result[&apos;errmsg&apos;])</span><br><span class="line">        else:</span><br><span class="line">            useropenid = result[&apos;openid&apos;]</span><br><span class="line">            userid = UserProfile.objects.filter(openid=useropenid).first().userid</span><br><span class="line">            profile = DeclareProfile()</span><br><span class="line">            profile.sender_id = userid</span><br><span class="line">            profile.towho=request.POST.get(&apos;towho&apos;, &apos;&apos;)</span><br><span class="line">            profile.anonymous=request.POST.get(&apos;anonymous&apos;, &apos;&apos;)</span><br><span class="line">            img=request.FILES.get(&apos;file&apos;, &apos;&apos;)</span><br><span class="line">            profile.image = img</span><br><span class="line">            profile.content=request.POST.get(&apos;content&apos;, &apos;&apos;)</span><br><span class="line">            profile.imgurl = request.POST.get(&apos;img_url&apos;, &apos;&apos;)</span><br><span class="line">            profile.save()</span><br><span class="line">        return HttpResponse(u&apos;提交保存成功&apos;)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from django_project.settings import MEDIA_ROOT</span><br><span class="line">from django.views.static import serve</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^media/(?P&lt;path&gt;.*)&apos;, serve, &#123;&quot;document_root&quot;: MEDIA_ROOT&#125;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>配置完成后，在接受文件时设置对应的字段接受的值为request.FILES.get(‘字段名’,’’)的写法，如：img=request.FILES.get(‘image’, ‘’)</p>
+<p>雏形阶段，很多东西未细化考虑，日后细化</p>
 </blockquote>
 
       
@@ -217,11 +219,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Imagefiled</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">七牛云 - 前端 - 图片上传</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">media路径</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -277,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://0xiaobao0.github.io/2018/11/18/Imagefiled以及media路径配置/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://0xiaobao0.github.io/2018/11/21/图片上传至七牛云/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +293,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/21/jdango七牛云回调实例/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          django七牛云回调示例
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/12/access_token/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">储存access_token的思路</div>
+    <a href="/2018/11/21/jdango七牛云回调实例/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">django七牛云回调示例</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -332,7 +325,7 @@
   
 
   
-  <div id="SOHUCS" sid="Imagefiled以及media路径配置" ></div> 
+  <div id="SOHUCS" sid="图片上传至七牛云" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

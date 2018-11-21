@@ -136,6 +136,187 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-图片上传至七牛云" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/21/图片上传至七牛云/">一次有趣的前后端与七牛云的交互</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/21/图片上传至七牛云/" class="archive-article-date">
+  	<time datetime="2018-11-21T13:47:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<blockquote>
+<p>场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。</p>
+</blockquote>
+<p>解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key值与域名拼接事件，然后再将拼接后的url添加到name=img_url隐藏的input的value中。随后将正常提交表单。</p>
+<blockquote>
+<p>前端html代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/html&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;提交&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/static/js/upload_to_qiniu.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form method=&quot;POST&quot; action=&quot;http://0smallwhite0.vicp.io:16991/declare/&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;key&quot; id=&quot;key&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; key &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;token&quot; id=&quot;token&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; token &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;file&quot; id=&quot;file&quot; type=&quot;file&quot; onchange=&quot;ajaxform()&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;towho&quot; id=&quot;towho&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;anonymous&quot; id=&quot;anonymous&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;content&quot; id=&quot;content&quot; type=&quot;text&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;img_url&quot; id=&quot;img_url&quot; type=&quot;hidden&quot; value=&quot;&quot;&gt;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">        &lt;input type=&quot;submit&quot; id=&quot;submit&quot; onclick=&quot;ajaxform()&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/11/21/图片上传至七牛云/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">七牛云 - 前端 - 图片上传</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/21/图片上传至七牛云/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jdango七牛云回调实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/21/jdango七牛云回调实例/">django七牛云回调示例</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/21/jdango七牛云回调实例/" class="archive-article-date">
+  	<time datetime="2018-11-21T11:13:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>view如下，upload_img生成key，和token返回给前端表单，upload_status接受七牛云的回调信息fname和key，即上传的图片名和图片储存在七牛云的图片储存名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">def upload_img(self,request):</span><br><span class="line">    import qiniu</span><br><span class="line">    import uuid</span><br><span class="line">    result = self.jugelogin(request)</span><br><span class="line">    if &apos;errmsg&apos; in result.keys():</span><br><span class="line">        return HttpResponse(result[&apos;errmsg&apos;])</span><br><span class="line">    else:</span><br><span class="line">        useropenid = result[&apos;openid&apos;]</span><br><span class="line">    ACCESS_KEY = &apos;七牛云access_key&apos;</span><br><span class="line">    SECRET_KEY = &apos;七牛云secret_key&apos;</span><br><span class="line">    BUCKET_NAME = &apos;七牛云仓库名&apos;</span><br><span class="line">    key = str(uuid.uuid1()).replace(&apos;-&apos;, &apos;&apos;)  # 这里使用uuid作为保存在七牛里文件的名字。并去掉了uuid中的“-”</span><br><span class="line">    q = qiniu.Auth(ACCESS_KEY, SECRET_KEY)</span><br><span class="line">    token = q.upload_token(BUCKET_NAME, key, 7200, &#123;&apos;callbackUrl&apos;: &apos;0smallwhite0.vicp.io:16991/upload_status/&apos;,</span><br><span class="line">                                                    &apos;callbackBody&apos;: &apos;&#123;&quot;name&quot;: &quot;$(fname)&quot;, &quot;key&quot;: &quot;$(key)&quot;&#125;&apos;,</span><br><span class="line">                                                    &apos;callbackBodyType&apos;: &apos;application/json&apos;,</span><br><span class="line">                                                    &apos;mimeLimit&apos;: &apos;image/jpeg;image/png&apos;&#125;)</span><br><span class="line">    return render_to_response(&apos;upload.html&apos;, &#123;&apos;token&apos;: token, &apos;key&apos;: key&#125;)</span><br><span class="line"></span><br><span class="line">def upload_status(self, request):</span><br><span class="line">    body = request.body</span><br><span class="line">    body = json.loads(body)</span><br><span class="line">    imgname = body[&apos;name&apos;]</span><br><span class="line">    imgkey = body[&apos;key&apos;]</span><br><span class="line">    return HttpResponse(&apos;200&apos;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/11/21/jdango七牛云回调实例/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">七牛云</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回调</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/21/jdango七牛云回调实例/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Imagefiled以及media路径配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -176,15 +357,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Imagefiled</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -452,15 +633,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树莓派</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">传输</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -589,15 +770,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -617,23 +818,44 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+                <a href="javascript:void(0)" class="js-tag color3">回调</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+                <a href="javascript:void(0)" class="js-tag color1">七牛云 - 前端 - js - 图片上传</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color4">七牛云 - 前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">七牛云 - 前端 - js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">七牛云 - 前端 - 图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">七牛云 - 前端
+- django</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">七牛云 - 前端 - 图片上传 - django</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
