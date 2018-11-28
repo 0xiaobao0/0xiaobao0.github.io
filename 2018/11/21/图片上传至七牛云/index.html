@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="mrliuuu">
 <meta property="og:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-21T14:00:25.162Z">
+<meta property="og:updated_time" content="2018-11-28T15:02:28.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次有趣的前后端与七牛云的交互">
 <meta name="twitter:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
@@ -172,11 +172,69 @@
 <p>前端js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function ajaxform() &#123;</span><br><span class="line">    var formData = new FormData();</span><br><span class="line">    formData.append(&apos;file&apos;, document.getElementById(&apos;file&apos;).files[0]);</span><br><span class="line">    formData.append(&apos;key&apos;, document.getElementById(&apos;key&apos;).value);</span><br><span class="line">    formData.append(&apos;token&apos;, document.getElementById(&apos;token&apos;).value);</span><br><span class="line">    document.getElementById(&apos;content&apos;).value);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &apos;http://up-z1.qiniup.com/&apos;,</span><br><span class="line">        data: formData,</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        contentType: false,//这里</span><br><span class="line">        processData: false,//这两个一定设置为false</span><br><span class="line">        success: function (data) &#123;</span><br><span class="line">            url = &apos;img.hellowmrliu.cn/&apos;+data[&apos;key&apos;];</span><br><span class="line">            setdata(url)</span><br><span class="line">        &#125;,</span><br><span class="line">        error:function()&#123;</span><br><span class="line">            alert(&apos;图片上传失败&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">function setdata(imgurl) &#123;</span><br><span class="line">    document.getElementById(&apos;img_url&apos;).value = imgurl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>后端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def declaration(self,request):</span><br><span class="line">    if request.method == &apos;GET&apos;:</span><br><span class="line">        return render(request, &apos;userform.html&apos;)</span><br><span class="line"></span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        result = self.jugelogin(request)</span><br><span class="line">        if &apos;errmsg&apos; in result.keys():</span><br><span class="line">            return HttpResponse(result[&apos;errmsg&apos;])</span><br><span class="line">        else:</span><br><span class="line">            useropenid = result[&apos;openid&apos;]</span><br><span class="line">            userid = UserProfile.objects.filter(openid=useropenid).first().userid</span><br><span class="line">            profile = DeclareProfile()</span><br><span class="line">            profile.sender_id = userid</span><br><span class="line">            profile.towho=request.POST.get(&apos;towho&apos;, &apos;&apos;)</span><br><span class="line">            profile.anonymous=request.POST.get(&apos;anonymous&apos;, &apos;&apos;)</span><br><span class="line">            img=request.FILES.get(&apos;file&apos;, &apos;&apos;)</span><br><span class="line">            profile.image = img</span><br><span class="line">            profile.content=request.POST.get(&apos;content&apos;, &apos;&apos;)</span><br><span class="line">            profile.imgurl = request.POST.get(&apos;img_url&apos;, &apos;&apos;)</span><br><span class="line">            profile.save()</span><br><span class="line">        return HttpResponse(u&apos;提交保存成功&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>后端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">def declaration(self,request):</span><br><span class="line">    if request.method == &apos;GET&apos;:</span><br><span class="line">        return render(request, &apos;userform.html&apos;)</span><br><span class="line"></span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        result = self.jugelogin(request)</span><br><span class="line">        if &apos;errmsg&apos; in result.keys():</span><br><span class="line">            return HttpResponse(result[&apos;errmsg&apos;])</span><br><span class="line">        else:</span><br><span class="line">            useropenid = result[&apos;openid&apos;]</span><br><span class="line">            userid = UserProfile.objects.filter(openid=useropenid).first().userid</span><br><span class="line">            profile = DeclareProfile()</span><br><span class="line">            profile.sender_id = userid</span><br><span class="line">            profile.towho=request.POST.get(&apos;towho&apos;, &apos;&apos;)</span><br><span class="line">            profile.anonymous=request.POST.get(&apos;anonymous&apos;, &apos;&apos;)</span><br><span class="line">            img=request.FILES.get(&apos;file&apos;, &apos;&apos;)</span><br><span class="line">            profile.image = img</span><br><span class="line">            profile.content=request.POST.get(&apos;content&apos;, &apos;&apos;)</span><br><span class="line">            profile.imgurl = request.POST.get(&apos;img_url&apos;, &apos;&apos;)</span><br><span class="line">            profile.save()</span><br><span class="line">        return HttpResponse(u&apos;提交保存成功&apos;)</span><br><span class="line"></span><br><span class="line">def upload(self, request):</span><br><span class="line">    import qiniu</span><br><span class="line">    import uuid</span><br><span class="line">    ACCESS_KEY = &apos;七牛云ACCESS_KEY&apos;</span><br><span class="line">    SECRET_KEY = &apos;七牛云SECRET_KEY&apos;</span><br><span class="line">    BUCKET_NAME = &apos;0store0&apos;</span><br><span class="line">    key = str(uuid.uuid1()).replace(&apos;-&apos;, &apos;&apos;)  # 这里使用uuid作为保存在七牛里文件的名字。并去掉了uuid中的“-”</span><br><span class="line">    q = qiniu.Auth(ACCESS_KEY, SECRET_KEY)</span><br><span class="line">    token = q.upload_token(BUCKET_NAME, key, 7200, &#123;</span><br><span class="line">        &apos;returnBody&apos;: &apos;&#123;&quot;name&quot;: &quot;$(fname)&quot;, &quot;key&quot;: &quot;$(key)&quot;&#125;&apos;,</span><br><span class="line">        &apos;fsizeLimit&apos;: 5242880,</span><br><span class="line">        &apos;mimeLimit&apos;: &apos;image/*&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">    return render(request, &apos;upload.html&apos;, &#123;&apos;token&apos;: token, &apos;key&apos;: key&#125;)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>雏形阶段，很多东西未细化考虑，日后细化</p>
 </blockquote>
+<p>更新时间：2018-11-28 22:36:35</p>
+<blockquote>
+<p>采用django resful framework后端代码调整为：<br>前端html代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/html&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;提交&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;/static/js/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;/static/js/upload_to_qiniu.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form method=&quot;POST&quot; action=&quot;http://127.0.0.1:8000/declare/&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;key&quot; id=&quot;key&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; key &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;token&quot; id=&quot;token&quot; type=&quot;hidden&quot; value=&quot;&#123;&#123; token &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;input name=&quot;file&quot; id=&quot;file&quot; type=&quot;file&quot; onchange=&quot;ajaxform()&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;towho&quot; id=&quot;towho&quot; type=&quot;text&quot; value=&quot;&#123;&#123; form.towho.value &#125;&#125;&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;anonymous&quot; id=&quot;anonymous&quot; type=&quot;text&quot; value=&quot;&#123;&#123; form.anonymous.value &#125;&#125;&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;content&quot; id=&quot;content&quot; type=&quot;text&quot; value=&quot;&#123;&#123; form.content.value &#125;&#125;&quot;&gt;&lt;/br&gt;</span><br><span class="line">        &lt;input name=&quot;imgurl&quot; id=&quot;img_url&quot; type=&quot;hidden&quot; value=&quot;&quot;&gt;</span><br><span class="line">        &#123;% csrf_token %&#125;</span><br><span class="line">        &lt;input type=&quot;submit&quot; id=&quot;submit&quot; onclick=&quot;ajaxform()&quot;&gt;</span><br><span class="line">        &#123;% for key, error in form.errors.items %&#125;&#123;&#123; error &#125;&#125;&#123;% endfor %&#125;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>改动：</p>
+<ol>
+<li>发现网络加载js文件有jquery丶慢，所以存到了本地</li>
+<li>后端加入了form验证逻辑，若用户表单合法性出错，会返回前端页面和一个result_dict参数，该参数含有token和key，以及key为form，value为declare_form的对象。通过调用形如<figure class="highlight plain"><figcaption><span>for key, error in form.errors.items %&#125;&#123;&#123; error &#125;&#125;&#123;% endfor %&#125;```来在需要展示的位置展示向用户提示的信息</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">js部分做了一些微调，删掉了error，因为有时存在乱弹窗的bug，暂未找到解决办法，所以删掉它。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>function ajaxform() {<br>    var formData = new FormData();<br>    formData.append(‘file’, document.getElementById(‘file’).files[0]);<br>    formData.append(‘key’, document.getElementById(‘key’).value);<br>    formData.append(‘token’, document.getElementById(‘token’).value);</p>
+<pre><code>$.ajax({
+    url: &apos;http://up-z1.qiniup.com/&apos;,
+    data: formData,
+    type: &quot;POST&quot;,
+    contentType: false,//这里
+    processData: false,//这两个一定设置为false
+
+    success: function (data) {
+        url = &apos;img.hellowmrliu.cn/&apos;+data[&apos;key&apos;];
+        setdata(url)
+    }
+    // error:function(){
+    //     alert(&apos;图片上传失败&apos;);
+    // }
+})
+</code></pre><p>}<br>function setdata(imgurl) {<br>    document.getElementById(‘img_url’).value = imgurl<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">后端代码：</span><br></pre></td></tr></table></figure>
+<p>from .models import UserProfile, DeclareProfile<br>from .decorator import check_login<br>from .forms import DeclareModelForm, DeclareForm</p>
+<p>from rest_framework.response import Response<br>from rest_framework.views import APIView</p>
+<p>class BaseResponse(object):<br>    def <strong>init</strong>(self,result=None,code=1000,message=None,data=None,error=None):<br>        self.result = {}<br>        self.result[‘code’]=code<br>        self.result[‘message’] = message<br>        self.result[‘data’]=data<br>        self.result[‘error’]=error</p>
+<p>def get_qiniu_token_and_key():<br>    import qiniu<br>    import uuid<br>    ACCESS_KEY = ‘EI5u9AjeOC8Z6E-dO8779gUHFvn2OzZygG6TTaWy’<br>    SECRET_KEY = ‘UhfftOyhvZ4rYYrxVkwkg-KD0Xtf685zTkYZAXz9’<br>    BUCKET_NAME = ‘0store0’<br>    key = str(uuid.uuid1()).replace(‘-‘, ‘’)  # 这里使用uuid作为保存在七牛里文件的名字。并去掉了uuid中的“-”<br>    q = qiniu.Auth(ACCESS_KEY, SECRET_KEY)<br>    token = q.upload_token(BUCKET_NAME, key, 7200, {<br>        ‘returnBody’: ‘{“name”: “$(fname)”, “key”: “$(key)”}’,<br>        ‘fsizeLimit’: 5242880,<br>        ‘mimeLimit’: ‘image/*’<br>    })<br>    return {‘token’: token, ‘key’: key}</p>
+<p>class Declaration(APIView):<br>    @check_login<br>    def get(self, request):<br>        token_key_dict = get_qiniu_token_and_key()<br>        return render(request, ‘upload.html’, token_key_dict)</p>
+<pre><code>@check_login
+def post(self, request):
+    ret = BaseResponse()
+    if True:
+        form_querydict = request.POST
+        new_form_querydict = form_querydict.copy()
+        useropenid = request.session.get(&apos;user_openid&apos;)
+        userid = UserProfile.objects.filter(openid=useropenid).first().userid
+        new_form_querydict.__setitem__(&apos;sender&apos;, userid)
+        declare_form = DeclareForm(new_form_querydict)
+        declare_model_form = DeclareModelForm(new_form_querydict)
+        valid = declare_form.is_valid()
+        if valid == True:
+            declare_model_form.save()
+            ret.result[&apos;code&apos;] = 2002
+            ret.result[&apos;message&apos;] = &apos;save succeed&apos;
+            ret.result[&apos;data&apos;] = {&apos;imgurl&apos;: new_form_querydict.get(&apos;imgurl&apos;)}
+        else:
+            result_dict = get_qiniu_token_and_key()
+            result_dict[&apos;form&apos;] = declare_form
+            return render(request, &apos;upload.html&apos;, result_dict)
+    else:
+        ret.result[&apos;code&apos;] = 4004
+        ret.result[&apos;error&apos;] = &apos;Faild to upload&apos;
+    return Response(ret.result)
+</code></pre><p><code>`</code></p>
 
       
 
@@ -509,6 +567,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ModelForm - 表单 - 验证</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">保存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">登录 - decrator</a>
               </li>
             
             <div class="clearfix"></div>
