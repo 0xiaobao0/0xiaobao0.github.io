@@ -9,14 +9,14 @@
   <title>使用装饰器验证登录 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="场景：某些接口需要在登录状态才能调用，为每个接口写太麻烦，因此采用装饰器，步骤如下：  1.在当前对应的app下创建decrator.py文件，添加如下代码：1234567891011def check_login(func):    def wrapper(self, request):        islogin = request.session.get(&amp;apos;islogin&amp;ap">
-<meta name="keywords" content="装饰器,登录 - decrator">
+<meta name="keywords" content="django,装饰器,登录,decrator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用装饰器验证登录">
 <meta property="og:url" content="http://0xiaobao0.github.io/2018/11/28/装饰器/index.html">
 <meta property="og:site_name" content="mrliuuu">
 <meta property="og:description" content="场景：某些接口需要在登录状态才能调用，为每个接口写太麻烦，因此采用装饰器，步骤如下：  1.在当前对应的app下创建decrator.py文件，添加如下代码：1234567891011def check_login(func):    def wrapper(self, request):        islogin = request.session.get(&amp;apos;islogin&amp;ap">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-28T10:15:36.141Z">
+<meta property="og:updated_time" content="2018-11-28T15:11:14.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用装饰器验证登录">
 <meta name="twitter:description" content="场景：某些接口需要在登录状态才能调用，为每个接口写太麻烦，因此采用装饰器，步骤如下：  1.在当前对应的app下创建decrator.py文件，添加如下代码：1234567891011def check_login(func):    def wrapper(self, request):        islogin = request.session.get(&amp;apos;islogin&amp;ap">
@@ -203,11 +203,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">装饰器</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">登录 - decrator</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">登录</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decrator</a>
         		</li>
       		
 		</ul>
@@ -416,55 +424,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">restful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回调</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,11 +444,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">七牛云 - 前端 - 图片上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">表单</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">验证</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,11 +488,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ModelForm - 表单 - 验证</a>
+                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保存</a>
+                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回调</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +520,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">登录 - decrator</a>
+                <a href="javascript:void(0)" class="js-tag color3">登录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">端口转发</a>
               </li>
             
             <div class="clearfix"></div>

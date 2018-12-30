@@ -9,14 +9,14 @@
   <title>一次有趣的前后端与七牛云的交互 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
-<meta name="keywords" content="django,python,七牛云 - 前端 - 图片上传,js">
+<meta name="keywords" content="django,七牛云,前端,图片上传">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次有趣的前后端与七牛云的交互">
 <meta property="og:url" content="http://0xiaobao0.github.io/2018/11/21/图片上传至七牛云/index.html">
 <meta property="og:site_name" content="mrliuuu">
 <meta property="og:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-28T15:02:28.453Z">
+<meta property="og:updated_time" content="2018-11-28T15:10:03.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次有趣的前后端与七牛云的交互">
 <meta name="twitter:description" content="场景：django写类似空间分享功能时，需要储存用户上传的图片，文章以及其他的一些内容，django的modle中内置有ImageFiled字段，实现将图片储存到本地，但是服务器空间有限，因此想将图片存在云服务商提供的空间，服务器存cdn加速外链。  解决方案:用户在前端页面选择完图片后，通过触发时间onchange，触发ajax向七牛云发起post请求，并将七牛云返回的json数据中的key">
@@ -273,15 +273,15 @@ def post(self, request):
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">七牛云</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">七牛云 - 前端 - 图片上传</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图片上传</a>
         		</li>
       		
 		</ul>
@@ -490,55 +490,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">restful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回调</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,11 +510,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">七牛云 - 前端 - 图片上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">表单</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">验证</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,11 +554,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ModelForm - 表单 - 验证</a>
+                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保存</a>
+                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回调</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,7 +586,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">登录 - decrator</a>
+                <a href="javascript:void(0)" class="js-tag color3">登录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">端口转发</a>
               </li>
             
             <div class="clearfix"></div>

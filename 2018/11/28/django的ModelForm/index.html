@@ -9,14 +9,14 @@
   <title>django Form做表单验证以及保存 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="应用场景：处理表单的接口需要对提交的表单做验证以及处理  view.py代码如下 12345678910111213141516171819202122232425262728293031323334from .forms import DeclareModelForm, DeclareFormfrom .models import UserProfile， DeclareProfileclas">
-<meta name="keywords" content="django,ModelForm - 表单 - 验证,保存">
+<meta name="keywords" content="django,ModelForm,表单,验证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django Form做表单验证以及保存">
 <meta property="og:url" content="http://0xiaobao0.github.io/2018/11/28/django的ModelForm/index.html">
 <meta property="og:site_name" content="mrliuuu">
 <meta property="og:description" content="应用场景：处理表单的接口需要对提交的表单做验证以及处理  view.py代码如下 12345678910111213141516171819202122232425262728293031323334from .forms import DeclareModelForm, DeclareFormfrom .models import UserProfile， DeclareProfileclas">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-28T14:35:25.606Z">
+<meta property="og:updated_time" content="2018-11-28T15:12:08.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django Form做表单验证以及保存">
 <meta name="twitter:description" content="应用场景：处理表单的接口需要对提交的表单做验证以及处理  view.py代码如下 12345678910111213141516171819202122232425262728293031323334from .forms import DeclareModelForm, DeclareFormfrom .models import UserProfile， DeclareProfileclas">
@@ -164,6 +164,7 @@
 </blockquote>
 <p>view.py代码如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">from .forms import DeclareModelForm, DeclareForm</span><br><span class="line">from .models import UserProfile， DeclareProfile</span><br><span class="line"></span><br><span class="line">class Declaration(APIView):</span><br><span class="line">    @check_login</span><br><span class="line">    def get(self, request):</span><br><span class="line">        token_key_dict = get_qiniu_token_and_key()</span><br><span class="line">        return render(request, &apos;upload.html&apos;, token_key_dict)</span><br><span class="line"></span><br><span class="line">    @check_login</span><br><span class="line">    def post(self, request):</span><br><span class="line">        ret = BaseResponse()</span><br><span class="line">        if True:</span><br><span class="line">            form_querydict = request.POST</span><br><span class="line">            new_form_querydict = form_querydict.copy()</span><br><span class="line">            useropenid = request.session.get(&apos;user_openid&apos;)</span><br><span class="line">            userid = UserProfile.objects.filter(openid=useropenid).first().userid</span><br><span class="line">            new_form_querydict.__setitem__(&apos;sender&apos;, userid)</span><br><span class="line">            declare_form = DeclareForm(new_form_querydict)</span><br><span class="line">            declare_model_form = DeclareModelForm(new_form_querydict)</span><br><span class="line">            valid = declare_form.is_valid()</span><br><span class="line">            if valid == True:</span><br><span class="line">                declare_model_form.save()</span><br><span class="line">                ret.result[&apos;code&apos;] = 2002</span><br><span class="line">                ret.result[&apos;message&apos;] = &apos;save succeed&apos;</span><br><span class="line">                ret.result[&apos;data&apos;] = &#123;&apos;imgurl&apos;: new_form_querydict.get(&apos;imgurl&apos;)&#125;</span><br><span class="line">            else:</span><br><span class="line">                result_dict = get_qiniu_token_and_key()</span><br><span class="line">                result_dict[&apos;form&apos;] = declare_form</span><br><span class="line">                return render(request, &apos;upload.html&apos;, result_dict)</span><br><span class="line">        else:</span><br><span class="line">            ret.result[&apos;code&apos;] = 4004</span><br><span class="line">            ret.result[&apos;error&apos;] = &apos;Faild to upload&apos;</span><br><span class="line">        return Response(ret.result)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <blockquote>
 <p>其中涉及到django内置的querydict类的一些知识点</p>
 </blockquote>
@@ -212,11 +213,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ModelForm - 表单 - 验证</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ModelForm</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">保存</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">表单</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">验证</a>
         		</li>
       		
 		</ul>
@@ -285,6 +290,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/12/30/nginx+hppts+django/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          nginx+https+django
+        
+      </div>
+    </a>
   
   
     <a href="/2018/11/28/装饰器/" id="article-nav-older" class="article-nav-link-wrap">
@@ -416,55 +430,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">restful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回调</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,11 +450,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">七牛云 - 前端 - 图片上传</a>
+                <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">表单</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">验证</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,11 +494,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ModelForm - 表单 - 验证</a>
+                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保存</a>
+                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回调</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +526,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">登录 - decrator</a>
+                <a href="javascript:void(0)" class="js-tag color3">登录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">端口转发</a>
               </li>
             
             <div class="clearfix"></div>
