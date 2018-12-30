@@ -160,31 +160,10 @@
 <p>应用场景：微信小程序需要通过https协议对服务器发起请求，因此需要通过nginx配置ssl后转发443端口至django运行的8000端口</p>
 </blockquote>
 <p>步骤如下：</p>
-<ol>
-<li><p>启动django项目：<figure class="highlight python"><figcaption><span>manage.py runserver 127.0.0.1:8000```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 申请腾讯云免费ssl证书，下载证书，解压缩，将Nginx文件夹下的<span class="number">1</span>_www.hellowmrliu.cn_bundle.crt和<span class="number">2</span>_www.hellowmrliu.cn.key传到服务器。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 前往https://www.djangoproject.com/download/ 下载nginx,下载完成后解压，将第一步中农的两个文件复制到conf文件夹中，然后修改conf/nginx.conf，取消HPPTS SEVER下的注释，作如下修改，关于该配置文件的详细讲解，参考https://www.cnblogs.com/liang-wei/p/<span class="number">5849771.</span>html：</span><br></pre></td></tr></table></figure></p>
-<p> server {</p>
-<pre><code>listen       443 ssl;
-server_name  localhost;
-
-ssl_certificate      1_www.hellowmrliu.cn_bundle.crt;
-ssl_certificate_key  2_www.hellowmrliu.cn.key;
-
-ssl_session_cache    shared:SSL:1m;
-ssl_session_timeout  5m;
-
-ssl_ciphers  HIGH:!aNULL:!MD5;
-ssl_prefer_server_ciphers  on;
-
-location / {
-    proxy_pass http://127.0.0.1:8000;
-    root   html;
-    index  index.html index.htm;
-}
-</code></pre><p> }<br><code>`</code></p>
-</li>
-<li><p>完成上述步骤后，运行nginx即可将通过https协议访问443端口的流量全部转发至服务器本地的8000端口，也就是django运行的端口</p>
-</li>
-</ol>
+<p>1.启动django项目：python manage.py runserver 127.0.0.1:8000</p>
+<p>2.申请腾讯云免费ssl证书，下载证书，解压缩，将Nginx文件夹下的1_<a href="http://www.hellowmrliu.cn_bundle.crt和2_www.hellowmrliu.cn.key传到服务器。" target="_blank" rel="noopener">www.hellowmrliu.cn_bundle.crt和2_www.hellowmrliu.cn.key传到服务器。</a></p>
+<p>3.前往<a href="https://www.djangoproject.com/download/" target="_blank" rel="noopener">https://www.djangoproject.com/download/</a> 下载nginx,下载完成后解压，将第一步中的两个文件复制到conf文件夹中，然后修改conf/nginx.conf，取消HPPTS SEVER下的注释，作如下修改，关于该配置文件的详细讲解，参考<a href="https://www.cnblogs.com/liang-wei/p/5849771.html：" target="_blank" rel="noopener">https://www.cnblogs.com/liang-wei/p/5849771.html：</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    ssl_certificate      1_www.hellowmrliu.cn_bundle.crt;</span><br><span class="line">    ssl_certificate_key  2_www.hellowmrliu.cn.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8000;</span><br><span class="line">        root   html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.完成上述步骤后，运行nginx即可将通过https协议访问443端口的流量全部转发至服务器本地的8000端口，也就是django运行的端口</p>
 
       
 
@@ -1152,47 +1131,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">django</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">restful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pychram</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">激活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">表单</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">验证</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,23 +1159,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">传输</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+                <a href="javascript:void(0)" class="js-tag color3">restful</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1236,23 +1171,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+                <a href="javascript:void(0)" class="js-tag color3">表单</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">登录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
+                <a href="javascript:void(0)" class="js-tag color3">验证</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1265,6 +1192,58 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">端口转发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pychram</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">激活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">登录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
               </li>
             
             <div class="clearfix"></div>
