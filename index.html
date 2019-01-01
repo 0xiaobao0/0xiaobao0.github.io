@@ -136,6 +136,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-登录模块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/31/登录模块/">登录模块</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/31/登录模块/" class="archive-article-date">
+  	<time datetime="2018-12-31T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>配置必要环境(以windows中用pychram为参考)</strong></p>
+</blockquote>
+<p>1.安装python3.6.2，<a href="https://www.python.org/downloads/release/python-362/" target="_blank" rel="noopener">前往下载页</a>,若无pip<a href="https://pypi.org/project/pip/#history" target="_blank" rel="noopener">前往下载页</a>，点击pip-18.1.tar.gz，下载完成后解压,进入到解压后的文件夹，运行<code>python setup.py install</code>，执行<code>pip -V</code>检测是否安装成功。</p>
+<p>2.执行<code>pip install virtualenv</code>和<code>pip install virtualenvwrapper</code></p>
+<p>3.然后再在windows环境变量(环境变量不是PATH，PATH只是环境变量中的一个变量)中添加变量<code>WORKON_HOME</code>该变量的值为自行选择的一个目录用来存放虚拟环境</p>
+<p>4.<code>mkvirtualenv --python=C:\Users\19205\AppData\Local\Programs\Python\Python36-32\python.exe django-2.14</code>创建虚拟环境</p>
+<p>5.创建完成后自动进入了该虚拟环境下，以后要进入运行workon +虚拟环境名字(如django-2.14)，以后该django项目所有命令行命令都在对应的虚拟环境中执行</p>
+<p>6.<code>pip install django==2.1.4</code>安装django</p>
+        
+          <a class="article-more-a" href="/2018/12/31/登录模块/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小程序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">登录</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/31/登录模块/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux一些操作与命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -160,6 +252,7 @@
 <p>2.将某个程序加入到环境变量，如python：<br>编译~/.bash_profile，在其中的PATH字段添加所需添加程序的绝对路径，eg:PATH=$PATH:$HOME/bin:/usr/local/python3/bin</p>
 <p>3.开机启动某个程序，编辑/etc/rc.local,添加一行<code>/usr/local/nginx/sbin/nginx</code>, 保存后设置执行权限<code>chmod 755 rc.local</code> ，除此之外还可以通过systemctl的方式，参考<a href="https://www.cnblogs.com/heyongboke/p/9216510.html" target="_blank" rel="noopener">https://www.cnblogs.com/heyongboke/p/9216510.html</a></p>
 <p>4.查看文件信息：ls -l filename，更多查看参考<a href="http://www.cnblogs.com/anliven/p/7944816.html" target="_blank" rel="noopener">http://www.cnblogs.com/anliven/p/7944816.html</a></p>
+<p>5.修改主机名hostnamectl set-hostname name，详细见<a href="https://cloud.tencent.com/developer/article/1374708" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1374708</a></p>
 
       
 
@@ -244,12 +337,9 @@
         <blockquote>
 <p>大一时对linux操作不习惯用的腾讯云的windows server 2012，后来熟练linux交互环境后，日渐想换服务器，于是今天换了centos7，记录一下重新开始的过程。</p>
 </blockquote>
-<p>1.首先安装nginx，参考<a href="https://www.cnblogs.com/kaid/p/7640723.html" target="_blank" rel="noopener">https://www.cnblogs.com/kaid/p/7640723.html</a><br> ，注意：在这个连接中作者未开启ssl模块，若要开启ssl模块，则在./configure操作时改为应</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</span><br></pre></td></tr></table></figure>
-<p> ， 然后再修改nginx/conf/nginx.conf，修改方式见文章nginx+hppts+django。</p>
+<p>1.首先安装nginx，参考<a href="https://www.cnblogs.com/kaid/p/7640723.html" target="_blank" rel="noopener">https://www.cnblogs.com/kaid/p/7640723.html</a><br> ，注意：在这个连接中作者未开启ssl模块，若要开启ssl模块，则在./configure操作时改为应<code>./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</code>，然后再修改nginx/conf/nginx.conf，修改方式见文章nginx+hppts+django。</p>
 <p>2.关于设置nginx开机自启，第一步安装连接中提到的编辑/etc/rc.local外还可以通过systemctl的方式，参考<a href="https://www.cnblogs.com/heyongboke/p/9216510.html" target="_blank" rel="noopener">https://www.cnblogs.com/heyongboke/p/9216510.html</a></p>
-<p>3.将nginx添加到环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line">添加</span><br><span class="line">PATH=$PATH:$HOME/bin:/usr/local/nginx/sbin</span><br></pre></td></tr></table></figure></p>
-<p>别忘了要以:分隔，保存退出后运行source ~/.bash_profile试修改生效</p>
+<p>3.将nginx添加到环境变量：<code>vim ~/.bash_profile</code>添加<code>PATH=$PATH:$HOME/bin:/usr/local/nginx/sbin</code><br>别忘了要以:分隔，保存退出后运行<code>source ~/.bash_profile</code>试修改生效</p>
         
           <a class="article-more-a" href="/2018/12/31/服务器搬迁/#more">more >></a>
         
@@ -265,11 +355,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -545,11 +635,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">装饰器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">登录</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">登录</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">装饰器</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -944,98 +1034,6 @@
 
 
   
-    <article id="post-Imagefiled以及media路径配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/18/Imagefiled以及media路径配置/">django配置Imagefiled上传路径以及media路径配置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/18/Imagefiled以及media路径配置/" class="archive-article-date">
-  	<time datetime="2018-11-18T11:01:14.004Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">首先配置model时进行如下配置</span><br><span class="line">class DeclareProfile(models.Model):</span><br><span class="line">    declareid = models.AutoField(verbose_name=u&apos;表白内容id&apos;, primary_key=True)</span><br><span class="line">    sender = models.ForeignKey(UserProfile, verbose_name=u&apos;发送者&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br><span class="line">    towho = models.CharField(max_length=20, verbose_name=u&apos;接受者&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br><span class="line">    anonymous = models.IntegerField(verbose_name=&quot;是否匿名&quot;, choices=((1, u&quot;匿名&quot;), (0, &quot;不匿名&quot;)), default=0, blank=True, null=True)</span><br><span class="line">    image = models.ImageField(upload_to=&quot;image/%Y/%m&quot;, default=u&quot;image/default.png&quot;)</span><br><span class="line">    content = models.CharField(max_length=5000, verbose_name=u&apos;内容&apos;, default=u&quot;&quot;, blank=True, null=True)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>表明图片的上传路径是在media路径下的image/年份/月份 文件夹之下</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/11/18/Imagefiled以及media路径配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Imagefiled</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">media路径</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/18/Imagefiled以及media路径配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1050,7 +1048,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 liu
+    		&copy; 2019 liu
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1129,30 +1127,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ModelForm</a>
               </li>
              
@@ -1162,6 +1136,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">验证</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">restful</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,30 +1179,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">传输</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">无外网ip</a>
               </li>
              
@@ -1221,35 +1187,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">restful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">登录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回调</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">操作</a>
+                <a href="javascript:void(0)" class="js-tag color4">树莓派</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,6 +1196,70 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ftp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">登录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">传输</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">access_token</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">定时刷新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">微信开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Imagefiled</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">media路径</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">七牛云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回调</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decrator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
               </li>
             
             <div class="clearfix"></div>

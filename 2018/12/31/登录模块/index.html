@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://0xiaobao0.github.io">
-  <title>Tag: https | mrliuuu</title>
+  <title>登录模块 | mrliuuu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="mrliuuu">
-<meta property="og:url" content="http://0xiaobao0.github.io/tags/https/index.html">
+  <meta name="description" content="配置必要环境(以windows中用pychram为参考)  1.安装python3.6.2，前往下载页,若无pip前往下载页，点击pip-18.1.tar.gz，下载完成后解压,进入到解压后的文件夹，运行python setup.py install，执行pip -V检测是否安装成功。 2.执行pip install virtualenv和pip install virtualenvwrappe">
+<meta name="keywords" content="django,微信小程序,登录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="登录模块">
+<meta property="og:url" content="http://0xiaobao0.github.io/2018/12/31/登录模块/index.html">
 <meta property="og:site_name" content="mrliuuu">
+<meta property="og:description" content="配置必要环境(以windows中用pychram为参考)  1.安装python3.6.2，前往下载页,若无pip前往下载页，点击pip-18.1.tar.gz，下载完成后解压,进入到解压后的文件夹，运行python setup.py install，执行pip -V检测是否安装成功。 2.执行pip install virtualenv和pip install virtualenvwrappe">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://developers.weixin.qq.com/miniprogram/dev/image/api-login.jpg?t=18110615">
+<meta property="og:image" content="http://img.hellowmrliu.cn/wx_sm_app_login.jpg">
+<meta property="og:updated_time" content="2019-01-01T08:52:02.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mrliuuu">
+<meta name="twitter:title" content="登录模块">
+<meta name="twitter:description" content="配置必要环境(以windows中用pychram为参考)  1.安装python3.6.2，前往下载页,若无pip前往下载页，点击pip-18.1.tar.gz，下载完成后解压,进入到解压后的文件夹，运行python setup.py install，执行pip -V检测是否安装成功。 2.执行pip install virtualenv和pip install virtualenvwrappe">
+<meta name="twitter:image" content="https://developers.weixin.qq.com/miniprogram/dev/image/api-login.jpg?t=18110615">
   
     <link rel="alternative" href="/atom.xml" title="mrliuuu" type="application/atom+xml">
   
@@ -134,36 +142,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-登录模块" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/30/nginx+hppts+django/" class="archive-article-date">
-  	<time datetime="2018-12-30T03:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/30/nginx+hppts+django/">nginx+https+django</a>
+    <h1 class="article-title" itemprop="name">
+      登录模块
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/12/31/登录模块/" class="archive-article-date">
+  	<time datetime="2018-12-31T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>配置必要环境(以windows中用pychram为参考)</strong></p>
+</blockquote>
+<p>1.安装python3.6.2，<a href="https://www.python.org/downloads/release/python-362/" target="_blank" rel="noopener">前往下载页</a>,若无pip<a href="https://pypi.org/project/pip/#history" target="_blank" rel="noopener">前往下载页</a>，点击pip-18.1.tar.gz，下载完成后解压,进入到解压后的文件夹，运行<code>python setup.py install</code>，执行<code>pip -V</code>检测是否安装成功。</p>
+<p>2.执行<code>pip install virtualenv</code>和<code>pip install virtualenvwrapper</code></p>
+<p>3.然后再在windows环境变量(环境变量不是PATH，PATH只是环境变量中的一个变量)中添加变量<code>WORKON_HOME</code>该变量的值为自行选择的一个目录用来存放虚拟环境</p>
+<p>4.<code>mkvirtualenv --python=C:\Users\19205\AppData\Local\Programs\Python\Python36-32\python.exe django-2.14</code>创建虚拟环境</p>
+<p>5.创建完成后自动进入了该虚拟环境下，以后要进入运行workon +虚拟环境名字(如django-2.14)，以后该django项目所有命令行命令都在对应的虚拟环境中执行</p>
+<p>6.<code>pip install django==2.1.4</code>安装django</p>
+<a id="more"></a>
+<blockquote>
+<p><strong>创建django项目，创建app</strong></p>
+</blockquote>
+<p>1.pycharm项目的interpreter选择创建的虚拟环境django-2.14对应的python程序，用pycharm创建django项目，在项目的根目录下创建apps文件夹用来存放app。</p>
+<p>2.<code>pip install djangorestframework</code>,安装django-restful-framework，方便以后的接口调试和生成接口文档。然后再django项目的setting文件中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    &apos;rest_framework&apos;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>3.菜单中找到工具<code>/run manage.py task</code>，打开后输入<code>startapp user_login</code>，创建用户登录app，将user_login文件夹剪切到apps文件夹下，以后每次创建app时都会进行该操作，</p>
+<p>4.在setting.py中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.path.insert(0, os.path.join(BASE_DIR, &apos;apps&apos;))</span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    &apos;user_login&apos;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>分析业务逻辑，根据需求创建model和view</strong></p>
+</blockquote>
+<p>微信官方登录流程时序:<br><img src="https://developers.weixin.qq.com/miniprogram/dev/image/api-login.jpg?t=18110615" alt=""></p>
+<p>自定义的前后端逻辑：</p>
+<p><img src="http://img.hellowmrliu.cn/wx_sm_app_login.jpg" alt=""></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -173,33 +223,126 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">微信小程序</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">端口转发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">登录</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://0xiaobao0.github.io/2018/12/31/登录模块/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/12/31/linux一些操作与命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux的一些操作与命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="登录模块" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytldmnbp",
+        conf: "b95eec750a37b9e13e3f050b72ee56ef"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +365,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
